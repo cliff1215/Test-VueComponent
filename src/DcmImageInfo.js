@@ -3,7 +3,7 @@
 //
 class DicomImageInfo {
     constructor() {
-        this.bIsImageLoaded = false;
+        this.bIsLoadedImage = false;
         this.nWidth = 0;
         this.nHeight = 0;
         this.nWinWidth = 0;
@@ -17,7 +17,7 @@ class DicomImageInfo {
         this.pRGBAImg = null; // ArrayBuffer
     }
 
-    static _base64ToArrayBuffer(base64) {
+    static __base64ToArrayBuffer(base64) {
         let binary_string =  window.atob(base64);
         let len = binary_string.length;
         let bytes = new Uint8Array( len );
@@ -48,12 +48,12 @@ class DicomImageInfo {
     }
 
     loadImage(base64) {
-        let buffer = DicomImageInfo._base64ToArrayBuffer(base64);
+        let buffer = DicomImageInfo.__base64ToArrayBuffer(base64);
         let pRawBuf = new Int16Array(buffer);
         if (this.nPixelRep === 1) {
             this.setMinPixelValue(pRawBuf);
         }
-        this.bIsImageLoaded = this.setRGBAImg(pRawBuf);
+        this.bIsLoadedImage = this.setRGBAImg(pRawBuf);
     }
 
     setRGBAImg (rawImg) {
@@ -83,7 +83,7 @@ class DicomImageInfo {
     }
 
     getLowUpVal() {
-        if (!this.bIsImageLoaded) {
+        if (!this.bIsLoadedImage) {
             return null;
         }
         
