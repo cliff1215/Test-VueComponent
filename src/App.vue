@@ -21,8 +21,6 @@
 </template>
 
 <script>
-// import * as CuonUtils from './lib/cuon-utils.js';
-// import {Matrix4, Vector3, Vector4} from './lib/cuon-matrix';
 import MyTable from './my-table.vue';
 import DcmImageBox from './dcm-image-Box.vue';
 import DcmImageInfo from './DcmImageInfo.js';
