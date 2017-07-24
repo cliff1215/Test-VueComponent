@@ -11,6 +11,8 @@ export const VSHADER_SOURCE = `
         v_TexCoord = a_TexCoord;
     }
 `;
+
+
 //
 // Fragment shader program
 // The third version
