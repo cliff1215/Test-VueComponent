@@ -21,9 +21,9 @@
 </template>
 
 <script>
-import MyTable from './my-table.vue';
-import DcmImageBox from './dcm-image-Box.vue';
-import DcmImageInfo from './DcmImageInfo.js';
+import MyTable from './components/my-table.vue';
+import DcmImageBox from './components/dcm-image-Box.vue';
+import DcmImageInfo from './classes/DcmImageInfo.js';
 
 export default {
     name: 'app',

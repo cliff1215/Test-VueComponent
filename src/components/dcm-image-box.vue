@@ -11,7 +11,7 @@
 </template>
 
 <script>
-    import ImageRender from './ImageRender';
+    import ImageRender from '../classes/ImageRender';
 
     export default {
         props: {
