@@ -1,6 +1,8 @@
 //
 // Dicom Image Information
 //
+import * as DicomTag from './DicomTag';
+
 class DicomImageInfo {
     constructor() {
         this.bIsLoadedImage = false;
@@ -36,15 +38,18 @@ class DicomImageInfo {
     }
 
     setFromJson(dcmJson) {
-        this.nWidth = dcmJson["00280011"].Value[0];
-        this.nHeight = dcmJson["00280010"].Value[0];
-        this.nWinWidth = dcmJson["00281051"].Value[0];
-        this.nWinCenter = dcmJson["00281050"].Value[0];
-        this.dSlope = dcmJson["00281053"] ? dcmJson["00281053"].Value[0] : 1.0;
-        this.dIntercept = dcmJson["00281052"] ? dcmJson["00281052"].Value[0] : 0.0;
-        this.nPixelRep = dcmJson["00280103"] ? dcmJson["00280103"].Value[0] : 0;
+        this.nWidth = dcmJson[DicomTag.COLUMNS].Value[0];
+        this.nHeight = dcmJson[DicomTag.ROWS].Value[0];
+        this.nWinWidth = dcmJson[DicomTag.WINDOW_WIDTH].Value[0];
+        this.nWinCenter = dcmJson[DicomTag.WINDOW_CENTER].Value[0];
+        this.dSlope = dcmJson[DicomTag.RESCALE_SLOPE] 
+                        ? dcmJson[DicomTag.RESCALE_SLOPE].Value[0] : 1.0;
+        this.dIntercept = dcmJson[DicomTag.RESCALE_INTERCEPT] 
+                        ? dcmJson[DicomTag.RESCALE_INTERCEPT].Value[0] : 0.0;
+        this.nPixelRep = dcmJson[DicomTag.PIXEL_REPRESENTATION] 
+                        ? dcmJson[DicomTag.PIXEL_REPRESENTATION].Value[0] : 0;
 
-        this.loadImage(dcmJson["7FE00010"].InlineBinary);
+        this.loadImage(dcmJson[DicomTag.PIXEL_DATA].InlineBinary);
     }
 
     loadImage(base64) {
