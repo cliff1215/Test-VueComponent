@@ -73,6 +73,7 @@ export default {
                 method: 'get',
                 url: 'http://localhost:8080/image/path/' + row.id
             }).then((response) => {
+                //console.log(response);
                 this.dcm_image = null;
                 this.dcm_image = new DcmImageInfo();
                 this.dcm_image.setFromJson(response.data);
